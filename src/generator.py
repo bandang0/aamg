@@ -8,13 +8,13 @@ import log
 class ModelGenerator:
     '''This is the main handle for our generator'''
     
-    def __init__(self, args: argparse.Namespace):
+    def __init__(self, args: argparse.Namespace) -> None:
         '''Initialize our handle'''
         self.args = args
         self.parse_grammar()
         self.load_assets()
 
-    def parse_grammar(self):
+    def parse_grammar(self) -> None:
         '''Parse grammar file'''
         if self.args.verbose:
             log.info(f'loading grammar file: {self.args.grammar}')
@@ -36,7 +36,7 @@ class ModelGenerator:
 
         return
 
-    def load_assets(self):
+    def load_assets(self) -> None:
         '''Load assets from the asset list file'''
         if self.args.verbose:
             log.info(f'loading asset list file: {self.args.assets}')
@@ -66,7 +66,7 @@ class ModelGenerator:
 
         return
 
-    def generate_model(self):
+    def generate_model(self) -> str:
         '''Let's generate a model by generating a string for the rule `model`'''
 
         return self.generate_rule(self.grammar['model'])
@@ -84,6 +84,7 @@ class ModelGenerator:
 
             # This is a string litteral
             if e[0] == '\'' or e[0] == '"':
+
                 # XXX: handle this better
                 if e[-1] != '\'' and e[-1] != '"':
                     log.die('unclosed string litteral')
