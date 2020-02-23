@@ -44,7 +44,7 @@ def generate_rule(grammar: typing.Dict[str, typing.List[str]],
                 i += 1
 
             if i < len(rule_value):
-                generate_rule(grammar, assets, random.choice(choices))
+                out.append(generate_rule(grammar, assets, random.choice(choices)))
                 i += 1
             else:
                 log.die(f'unclosed parenthesis')
