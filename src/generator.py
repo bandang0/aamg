@@ -75,7 +75,7 @@ class ModelGenerator:
         '''Get the string for a rule'''
 
         if self.args.verbose:
-            log.info(f'generating string for rule {rule_value}')
+            log.info(f'generating string for rule: {" ".join(rule_value)}')
 
         out: typing.List[str] = list()
         i: int = 0
@@ -123,7 +123,7 @@ class ModelGenerator:
 
                 if i < len(rule_value):
                     if self.args.verbose:
-                        log.info(f'rule choices for this parenthesis {choices}')
+                        log.info(f'choices: {[" ".join(c) for c in choices]}')
                     out.append(self.generate_rule(random.choice(choices)))
                 else:
                     log.die(f'unclosed parenthesis')
