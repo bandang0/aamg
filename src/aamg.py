@@ -2,53 +2,56 @@
 
 import argparse
 import sys
+import typing
+
+import model
+import log
 
 
-def log(msg: str) -> None:
-    '''Log a message'''
-    print(f'[\033[0;32m*\033[0m] {msg}', file=sys.stderr)
-
-def warn(msg: str) -> None:
-    '''Log a warning'''
-    print(f'[\033[0;33m*\033[0m] {msg}', file=sys.stderr)
-
-def die(msg: str) -> None:
-    '''Log an error and exit'''
-    print(f'[\033[0;31m*\033[0m] {msg}', file=sys.stderr)
-    sys.exit(1)
-
-def parse_grammar(grammar_file: str) -> None:
+def parse_grammar(grammar_file: str) -> typing.Dict[str, typing.List[str]]:
     '''Parse grammar file'''
-    pass
+    try:
+        with open(grammar_file, 'r') as f:
+            lines = (line.strip().split('=') for line in f.readlines())
+    except OSError as e:
+        log.die(f'{asset_list}: {e.strerror}')
+    grammar: typing.Dict[str, str] = dict()
+    for line in lines:
+        if len(line) == 1 or line[0].lstrip()[0] == '#':
+            continue
+        elif line[0] not in grammar.keys():
+            grammar[line[0]] = '='.join(line[1:]).split()
+        else:
+            log.warn(f'ignoring duplicate rule file: "{" ".join(line)}"')
+    if 'model' not in grammar.keys():
+        log.die('you must define a rule called \'model\' in your grammar file')
+    return grammar
 
-def load_assets(asset_list: str) -> dict:
+def load_assets(asset_list: str) -> typing.Dict[str, typing.List[str]]:
     '''Load assets from the asset list file'''
     try:
         with open(asset_list, 'r') as f:
             lines = (line.strip().split('=') for line in f.readlines())
     except OSError as e:
-        die(f'{asset_list}: {e.strerror}')
+        log.die(f'{asset_list}: {e.strerror}')
 
-    assets = dict()
+    assets: typing.Dict[str, typing.List[str]] = dict()
     for line in lines:
-        if line[0] not in assets.keys():
+        if len(line) < 2:
+            log.die(f'empty value for asset file')
+        elif line[0] not in assets.keys():
             try:
                 with open(line[1], 'r') as f:
                     assets[line[0]] = list(line.strip()
                             for line in f.readlines())
+                    if (len(assets[line[0]]) == 0):
+                        log.die('empty asset key')
             except OSError as e:
-                die(f'{line[1]}: {e.strerror}')
+                log.die(f'{line[1]}: {e.strerror}')
         else:
-            warn(f'ignoring duplicate asset file: {" ".join(line)}')
+            log.warn(f'ignoring duplicate asset file: "{" ".join(line)}"')
+
     return assets
-
-def check_assets(grammar: None, assets: dict) -> bool:
-    '''Check we have all the assets we need to respect our grammar'''
-    return True
-
-def generate_model(grammar: None, assets: dict) -> str:
-    '''Generate a new model'''
-    return ''
 
 def aamg() -> None:
     '''This is the main entrypoint for our program.'''
@@ -60,19 +63,16 @@ def aamg() -> None:
             type=str, help='the file to use as the asset list')
     args = parser.parse_args()
 
-    log(f'using \'{args.grammar}\' as a grammar')
-    log(f'using \'{args.assets}\' as an asset list file')
+    log.info(f'using \'{args.grammar}\' as a grammar')
+    log.info(f'using \'{args.assets}\' as an asset list file')
 
     grammar = parse_grammar(args.grammar)
-    log('parsed grammar')
+    log.info('parsed grammar')
 
-    assets = load_assets(args.assets)
-    log('loaded assets')
+    assets: typing.Dict[str, typing.List[str]] = load_assets(args.assets)
+    log.info('loaded assets')
 
-    if not check_assets(grammar, assets):
-        die('asset check failed')
-
-    print(generate_model(grammar, assets))
+    print(model.generate_model(grammar, assets))
 
 if __name__ == '__main__':
     aamg()
