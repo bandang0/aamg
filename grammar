@@ -1,2 +1,0 @@
-model='The' subject [(adv|adv 'and' adv)] verb ('a' | 'the only') object
-subject = (animal | num animals)
