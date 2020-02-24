@@ -7,7 +7,7 @@ import log
 
 class ModelGenerator:
     '''This is the main handle for our generator'''
-    
+
     def __init__(self, args: argparse.Namespace) -> None:
         '''Initialize our handle'''
         self.args = args
@@ -22,7 +22,7 @@ class ModelGenerator:
             with open(self.args.grammar, 'r') as f:
                 lines = (line.strip().split('=') for line in f.readlines())
         except OSError as e:
-            log.die(f'{asset_list}: {e.strerror}')
+            log.die(f'{self.args.grammar}: {e.strerror}')
         self.grammar: typing.Dict[str, str] = dict()
         for line in lines:
             if len(line) == 1 or line[0].lstrip()[0] == '#':
@@ -30,7 +30,8 @@ class ModelGenerator:
             elif line[0] not in self.grammar.keys():
                 self.grammar[line[0]] = '='.join(line[1:]).split()
             else:
-                log.warn(f'ignoring duplicate rule file: "{" ".join(line)}"')
+                if self.args.verbose:
+                    log.warn(f'ignoring duplicate rule file: "{" ".join(line)}"')
         if 'model' not in self.grammar.keys():
             log.die('you must define a rule called \'model\' in your grammar file')
 
@@ -62,7 +63,8 @@ class ModelGenerator:
                 except OSError as e:
                     log.die(f'{line[1]}: {e.strerror}')
             else:
-                log.warn(f'ignoring duplicate asset file: "{" ".join(line)}"')
+                if self.args.verbose:
+                    log.warn(f'ignoring duplicate asset file: "{" ".join(line)}"')
 
         return
 
