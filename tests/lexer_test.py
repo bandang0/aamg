@@ -11,7 +11,7 @@ import generator
 
 
 def launch_test_with_mock_file(func: typing.Callable,
-        file_content: str) ->unittest.mock.Mock:
+    file_content: str) -> unittest.mock.Mock:
     '''Takes a function and a file content and returns a Mock object
     which mimics our ModelGenerator's behaviour when calling the function with
     that filename in the correct `args` member.'''

@@ -1,6 +1,6 @@
-animal=asssets/animal.txt
-num=asssets/num.txt
-animals=asssets/animals.txt
-adv=asssets/adv.txt
-verb=asssets/verb.txt
-object=asssets/object.txt
+animal=assets/animal.txt
+num=assets/num.txt
+animals=assets/animals.txt
+adv=assets/adv.txt
+verb=assets/verb.txt
+object=assets/object.txt
