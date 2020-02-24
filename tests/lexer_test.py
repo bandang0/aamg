@@ -5,7 +5,9 @@ import typing
 import unittest
 import unittest.mock
 
-sys.path.insert(0, 'src')
+
+# We need this because our tests and source files are not in the same directory
+sys.path.insert(0, 'aamg')
 
 import generator
 
