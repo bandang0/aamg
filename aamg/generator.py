@@ -23,7 +23,7 @@ class ModelGenerator:
                 lines = (line.strip().split('=') for line in f.readlines())
         except OSError as e:
             log.die(f'{self.args.grammar}: {e.strerror}')
-        self.grammar: typing.Dict[str, str] = dict()
+        self.grammar: typing.Dict[str, typing.List[str]] = dict()
         for line in lines:
             if len(line) == 1 or line[0].lstrip()[0] == '#':
                 continue
