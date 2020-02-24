@@ -2,10 +2,10 @@
 
 import argparse
 
-from . import generator
+from aamg import generator
 
 
-def aamg() -> None:
+def aamg_main() -> None:
     '''This is the main entrypoint for our program.'''
     parser = argparse.ArgumentParser(description='Get an automatically '
                                      'generated astrophysical model')
@@ -25,4 +25,4 @@ def aamg() -> None:
 
 
 if __name__ == '__main__':
-    aamg()
+    aamg_main()
