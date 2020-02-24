@@ -2,7 +2,7 @@ import argparse
 import random
 import typing
 
-import log
+from . import log
 
 
 class ModelGenerator:
@@ -31,9 +31,11 @@ class ModelGenerator:
                 self.grammar[line[0]] = '='.join(line[1:]).split()
             else:
                 if self.args.verbose:
-                    log.warn(f'ignoring duplicate rule file: "{" ".join(line)}"')
+                    log.warn('ignoring duplicate rule file: '
+                             f'"{" ".join(line)}"')
         if 'model' not in self.grammar.keys():
-            log.die('you must define a rule called \'model\' in your grammar file')
+            log.die('you must define a rule called \'model\' '
+                    'in your grammar file')
 
         return
 
@@ -57,19 +59,20 @@ class ModelGenerator:
                 try:
                     with open(line[1], 'r') as f:
                         self.assets[line[0]] = list(line.strip()
-                                for line in f.readlines())
+                                                    for line in f.readlines())
                         if (len(self.assets[line[0]]) == 0):
                             log.die('empty asset key')
                 except OSError as e:
                     log.die(f'{line[1]}: {e.strerror}')
             else:
                 if self.args.verbose:
-                    log.warn(f'ignoring duplicate asset file: "{" ".join(line)}"')
+                    log.warn(f'ignoring duplicate asset file: '
+                             f'"{" ".join(line)}"')
 
         return
 
     def generate_model(self) -> str:
-        '''Let's generate a model by generating a string for the rule `model`'''
+        '''Let's generate a model by producing a string for the rule `model`'''
 
         return self.generate_rule(self.grammar['model'])
 
