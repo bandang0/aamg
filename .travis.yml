@@ -1,0 +1,10 @@
+language: python
+# Default Python for Travis is *some* Python 3.
+# Install dependencies.
+install:
+    - pip install -r requirements.txt
+    - pip install pycodestyle
+# Run tests.
+script:
+    - pycodestyle .
+    - python setup.py test
