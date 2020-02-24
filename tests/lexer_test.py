@@ -5,15 +5,11 @@ import typing
 import unittest
 import unittest.mock
 
-
-# We need this because our tests and source files are not in the same directory
-sys.path.insert(0, 'aamg')
-
-import generator
+from aamg import generator
 
 
 def launch_test_with_mock_file(func: typing.Callable,
-    file_content: str) -> unittest.mock.Mock:
+                               file_content: str) -> unittest.mock.Mock:
     '''Takes a function and a file content and returns a Mock object
     which mimics our ModelGenerator's behaviour when calling the function with
     that filename in the correct `args` member.'''
@@ -27,12 +23,14 @@ def launch_test_with_mock_file(func: typing.Callable,
 
     # Patch the `open` function so we can mock the file opening in `func`
     with unittest.mock.patch(f'builtins.open',
-            unittest.mock.mock_open(read_data=file_content), create=True):
+                             unittest.mock.mock_open(read_data=file_content),
+                             create=True):
 
         # Give the mock as the `self` parameter to our function
         func(mock)
 
     return mock
+
 
 class TestGrammarLexer(unittest.TestCase):
     '''This tests grammar lexing'''
@@ -65,10 +63,10 @@ class TestGrammarLexer(unittest.TestCase):
         '''This is just the first thing I tried so it stayed here'''
 
         expected_dict: typing.Dict[str, typing.List[str]] = dict()
-        expected_dict['model'] =   ['\'The\'', 'subject', '(', 'adv', '|', 
-                'adv', '\'and\'', 'adv', ')', 'verb', '(', '\'a\'', '|',
-                '\'theonly\'', ')', 'object']
-        expected_dict['subject'] = ['"The"', '\'sdf\''] 
+        expected_dict['model'] = ['\'The\'', 'subject', '(', 'adv', '|',
+                                  'adv', '\'and\'', 'adv', ')', 'verb', '(',
+                                  '\'a\'', '|', '\'theonly\'', ')', 'object']
+        expected_dict['subject'] = ['"The"', '\'sdf\'']
 
         file_content: str = str()
         file_content += "model='The' subject ( adv | adv 'and' adv )  verb "
