@@ -7,7 +7,7 @@ If you want to run our tests you can simply clone the repository and run the
 following command:
 
 ```
-    $ python3 -m unittest discover -v -s tests -p '*_test.py'
+    $ python3 setup.py test
 ```
 
 ## Writing tests
