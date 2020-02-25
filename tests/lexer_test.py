@@ -33,10 +33,10 @@ def launch_test_with_mock_file(func: typing.Callable,
 
 
 class TestGrammarLexer(unittest.TestCase):
-    '''This tests grammar lexing'''
+    '''This tests grammar lexing.'''
 
     def test_function_call_template(self) -> None:
-        '''Easiest test ever. You can use this as a copy/paste template.'''
+        '''Template test for all tests with file content input.'''
 
         # This represents the `dict` you expect your `mock` after the function
         # call.
@@ -59,8 +59,8 @@ class TestGrammarLexer(unittest.TestCase):
         # have so we can assert it is what we expected.
         self.assertEqual(mock.grammar, expected_dict)
 
-    def test_random(self) -> None:
-        '''This is just the first thing I tried so it stayed here'''
+    def test_grammar_parsing(self) -> None:
+        '''Test grammar parsing in the generator.ModelGenerator class.'''
 
         expected_dict: typing.Dict[str, typing.List[str]] = dict()
         expected_dict['model'] = ['\'The\'', 'subject', '(', 'adv', '|',
