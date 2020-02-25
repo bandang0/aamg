@@ -1,0 +1,8 @@
+binary-verb=words/binary-verb.txt
+environment=words/environment.txt
+objects=words/objects.txt
+passive-tense=words/passive-tense.txt
+phenomena=words/phenomena.txt
+phenomenon=words/phenomenon.txt
+progenitor=words/progenitor.txt
+unary-verb=words/unary-verb.txt

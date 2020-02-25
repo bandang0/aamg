@@ -1,0 +1,2 @@
+model='The' subject ( adv | adv 'and' adv )  verb ( 'a' | 'theonly' ) object
+subject=( animal | num animals )

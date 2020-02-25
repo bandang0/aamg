@@ -1,0 +1,39 @@
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+eleven
+twelve
+thirteen
+fourteen
+fifteen
+sixteen
+seventeen
+eighteen
+nineteen
+twenty
+twenty-one
+twenty-two
+twenty-three
+twenty-four
+thirty
+thirty-one
+forty
+fifty
+sixty
+seventy
+eighty
+ninety
+one hundred
+one hundred and one
+one hundred and fifty-two
+two hundred
+one thousand
+one million
+one billion
+one trillion
