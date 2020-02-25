@@ -1,3 +1,5 @@
+'''Setup script for the aamg library and the aamg-gen cli tool.'''
+
 import setuptools
 
 with open('README.md', 'r') as f:

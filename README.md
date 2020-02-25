@@ -1,5 +1,12 @@
-# aamg
-Automatic Astrophysical Model Generator
+# AAMG : Automatic Astrophysical Model Generator
+
+Automatically generate random sentences from a given grammar and lists of words.
+
+## Usage
+
+`aamg-gen [(--grammar | -g) GRAMMARFILE] [(--assets | -a) ASSETSFILE]`
+
+See examples in the `examples/` folder.
 
 ## Installation
 

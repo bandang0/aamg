@@ -6,16 +6,16 @@ from . import log
 
 
 class ModelGenerator:
-    '''This is the main handle for our generator'''
+    '''This is the main handle for our generator.'''
 
     def __init__(self, args: argparse.Namespace) -> None:
-        '''Initialize our handle'''
+        '''Initialize our handle.'''
         self.args = args
         self.parse_grammar()
         self.load_assets()
 
     def parse_grammar(self) -> None:
-        '''Parse grammar file'''
+        '''Parse grammar file.'''
         if self.args.verbose:
             log.info(f'loading grammar file: {self.args.grammar}')
         try:
@@ -40,7 +40,7 @@ class ModelGenerator:
         return
 
     def load_assets(self) -> None:
-        '''Load assets from the asset list file'''
+        '''Load assets from the asset list file.'''
         if self.args.verbose:
             log.info(f'loading asset list file: {self.args.assets}')
         try:
@@ -72,12 +72,12 @@ class ModelGenerator:
         return
 
     def generate_model(self) -> str:
-        '''Let's generate a model by producing a string for the rule `model`'''
+        '''Generate a model by producing a string for the rule `model`.'''
 
         return self.generate_rule(self.grammar['model'])
 
     def generate_rule(self, rule_value: typing.List[str]) -> str:
-        '''Get the string for a rule'''
+        '''Get a string for a production rule.'''
 
         if self.args.verbose:
             log.info(f'generating string for rule: {" ".join(rule_value)}')
