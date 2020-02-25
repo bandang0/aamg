@@ -1,0 +1,6 @@
+animal=words/animal.txt
+num=words/num.txt
+animals=words/animals.txt
+adv=words/adv.txt
+verb=words/verb.txt
+object=words/object.txt

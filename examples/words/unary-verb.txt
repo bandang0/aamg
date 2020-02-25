@@ -1,0 +1,4 @@
+collapsing
+decaying
+frame-dragging
+radiating

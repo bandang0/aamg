@@ -1,0 +1,5 @@
+model = (what-if-phrase|affirmative-phrase)
+what-if-phrase = "What if" (phenomena|phenomenon) "were" passive-tense action [place] "?"
+affirmative-phrase = (phenomena "are"|phenomenon "is") passive-tense action [place] "."
+action = (unary-verb "of" progenitor|binary-verb "of" progenitor "and" progenitor)
+place = "in" environment "of" objects
