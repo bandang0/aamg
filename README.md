@@ -1,7 +1,18 @@
 # aamg
 Automatic Astrophysical Model Generator
 
-##  Setup
+## Installation
+
+To install the aamg library and the aamg-gen script run:
+
+```
+    $ python setup.py install
+```
+
+The previous command might need administrative privileges if you are not in a
+virtual environment.
+
+##  Development setup
 
 To fetch all dependencies just use:
 

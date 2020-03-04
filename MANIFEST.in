@@ -1,0 +1,8 @@
+# Include our requirement file
+include requirements.txt
+
+# Include our license
+include LICENSE
+
+# Include all tests
+include tests/*_test.py
