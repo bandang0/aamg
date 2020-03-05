@@ -7,4 +7,3 @@ install:
 # Run tests.
 script:
     - pycodestyle .
-    - python setup.py test

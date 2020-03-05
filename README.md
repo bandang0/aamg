@@ -39,6 +39,7 @@ following command:
     $ tox
 ```
 
+This requires to have the `tox` program installed. This can be done from the PyPI.
 ## Writing tests
 
 There are comments and template tests you can copy/paste and edit in most
