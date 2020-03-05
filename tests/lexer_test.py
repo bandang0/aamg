@@ -59,8 +59,8 @@ class TestGrammarLexer(unittest.TestCase):
         # have so we can assert it is what we expected.
         self.assertEqual(mock.grammar, expected_dict)
 
-    def test_grammar_parsing(self) -> None:
-        '''Test grammar parsing in the generator.ModelGenerator class.'''
+    def test_parsing_elementary_grammar(self) -> None:
+        '''Test parsing by ModelGenerator class on an elementary case.'''
 
         expected_dict: typing.Dict[str, typing.List[str]] = dict()
         expected_dict['model'] = ['\'The\'', 'subject', '(', 'adv', '|',
